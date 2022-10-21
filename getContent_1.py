@@ -63,23 +63,23 @@ def create_request(_page, _flag):
 
 def get_content(_request):
     # 代理池，使用代理池作为随机ip来防止网页封我ip
-    # proxies_poll = [
-    #     {'http': '58.20.184.187:9091'},
-    #     {'http': '39.108.101.55:1080'},
-    #     {'http': '223.96.90.216:8085'},
-    #     {'http': '121.13.252.58:41564'},
-    #     {'http': '61.216.185.88:60808'},
-    # ]
-    # # 获得代理
-    # proxies = random.choice(proxies_poll)
-    # # 获得handler对象
-    # handler = urllib.request.ProxyHandler(proxies)
-    # # 获得opener对象
-    # opener = urllib.request.build_opener(handler)
-    # # 使用open方法
-    #
-    # response = opener.open(_request)
-    response = urllib.request.urlopen(_request)
+    proxies_poll = [
+        {'http': '58.20.184.187:9091'},
+        {'http': '39.108.101.55:1080'},
+        {'http': '223.96.90.216:8085'},
+        {'http': '121.13.252.58:41564'},
+        {'http': '61.216.185.88:60808'},
+    ]
+    # 获得代理
+    proxies = random.choice(proxies_poll)
+    # 获得handler对象
+    handler = urllib.request.ProxyHandler(proxies)
+    # 获得opener对象
+    opener = urllib.request.build_opener(handler)
+    # 使用open方法
+
+    response = opener.open(_request)
+    # response = urllib.request.urlopen(_request)
     _content = response.read().decode('utf-8')
     return _content
 
